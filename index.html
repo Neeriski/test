@@ -618,7 +618,76 @@
   });
 
   startAuto();
+  /* ---------- MOBILE FIT FIX (CRITICAL) ---------- */
+@media (max-width: 600px) {
+
+  /* HERO FIX */
+  .hero {
+    height: 92vh;            /* instead of full 100vh */
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .hero p {
+    font-size: 15px;
+    margin-top: 14px;
+  }
+
+  /* STATS FIX */
+  .stats {
+    padding: 40px 6%;
+    gap: 22px;
+  }
+
+  .stat h2 {
+    font-size: 28px;
+  }
+
+  .stat p {
+    font-size: 12px;
+  }
+
+  /* SECTION SPACING FIX */
+  .section,
+  .testimonial-section,
+  .cta {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .section h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  /* GALLERY FIX */
+  .grid img {
+    min-width: 80%;
+    height: 340px;
+  }
+
+  /* TESTIMONIAL FIX */
+  .testimonial-section h2 {
+    font-size: 34px;
+    margin-bottom: 40px;
+  }
+
+  .testimonial-card {
+    padding: 30px;
+  }
+}
 </script>
 
 </body>
 </html>
+
