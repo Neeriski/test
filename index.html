@@ -23,6 +23,7 @@
       color: var(--dark);
       line-height: 1.6;
       background: #fff;
+      -webkit-font-smoothing: antialiased;
     }
 
     h1, h2, h3 {
@@ -275,6 +276,7 @@
     .testimonial-slider {
       position: relative;
       min-height: 300px;
+      touch-action: pan-y;
     }
 
     .testimonial-card {
@@ -366,12 +368,75 @@
 
     /* ---------- MOBILE ---------- */
     @media (max-width: 900px) {
-      .hero h1 { font-size: 40px; }
-      .grid, .services { grid-template-columns: 1fr 1fr; }
-      .why { grid-template-columns: 1fr; }
-      .stats { flex-direction: column; gap: 32px; }
-      .arrow { display: none; }
-      .testimonial-card { padding: 34px; }
+
+      .hero {
+        padding: 0 6%;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+        padding: 16px;
+      }
+
+      .stats {
+        flex-direction: column;
+        gap: 28px;
+        padding: 60px 6%;
+      }
+
+      .section {
+        padding: 80px 6%;
+      }
+
+      /* Mobile gallery swipe */
+      .grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .grid img {
+        min-width: 75%;
+        height: 380px;
+        scroll-snap-align: start;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .why {
+        grid-template-columns: 1fr;
+      }
+
+      .why-stats {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .arrow {
+        display: none;
+      }
+
+      .testimonial-card {
+        padding: 34px;
+      }
     }
   </style>
 </head>
@@ -543,7 +608,7 @@
   slider.addEventListener('mouseenter', stopAuto);
   slider.addEventListener('mouseleave', startAuto);
 
-  /* swipe */
+  /* touch swipe */
   let startX = 0;
   slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
   slider.addEventListener('touchend', e => {
