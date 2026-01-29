@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glitz Promotions</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #C6A15B;
+      --black: #000;
+      --dark: #111;
+      --light: #f4f4f4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: #fff;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--black);
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ---------- SCROLL REVEAL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                  url("hero.avif") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 10%;
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      max-width: 650px;
+      color: #fff;
+    }
+
+    .hero p {
+      margin-top: 18px;
+      font-size: 18px;
+      max-width: 560px;
+      opacity: 0.95;
+    }
+
+    .buttons {
+      margin-top: 36px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 32px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #b38f4a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(198,161,91,0.25);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(198,161,91,0.25);
+    }
+
+    /* ---------- STATS ---------- */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 70px 10%;
+      background: #fff;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .stat h2 {
+      font-size: 36px;
+      color: var(--gold);
+    }
+
+    .stat p {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 6px;
+      color: #555;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    .section {
+      padding: 120px 10%;
+    }
+
+    .section h2 {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      max-width: 650px;
+      margin-bottom: 50px;
+      color: #555;
+      font-size: 16px;
+    }
+
+    /* ---------- GALLERY ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .grid img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 16px;
+      transition: transform 0.4s ease;
+    }
+
+    .grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* ---------- SERVICES ---------- */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .service {
+      padding: 36px;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      background: #fff;
+    }
+
+    .service h3 {
+      margin-bottom: 14px;
+      font-size: 22px;
+      position: relative;
+    }
+
+    .service h3::after {
+      content: "";
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--gold);
+      margin-top: 10px;
+    }
+
+    .service p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* ---------- WHY US ---------- */
+    .why {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .why img {
+      width: 100%;
+      border-radius: 22px;
+    }
+
+    .why-text {
+      max-width: 520px;
+    }
+
+    .why-points {
+      margin-top: 28px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .why-points li {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .why-points li::before {
+      content: "✦ ";
+      color: var(--gold);
+    }
+
+    .why-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 36px;
+    }
+
+    .why-stats strong {
+      font-size: 28px;
+      display: block;
+      color: var(--gold);
+    }
+
+    .why-stats span {
+      font-size: 13px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonial-section {
+      padding: 120px 10%;
+      background: var(--light);
+      text-align: center;
+    }
+
+    .testimonial-section h2 {
+      font-size: 42px;
+      margin-bottom: 60px;
+    }
+
+    .testimonial-wrapper {
+      position: relative;
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .testimonial-slider {
+      position: relative;
+      min-height: 300px;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      padding: 50px;
+      border-radius: 26px;
+      box-shadow: 0 35px 70px rgba(0,0,0,0.14);
+      opacity: 0;
+      transform: scale(0.94) translateY(30px);
+      position: absolute;
+      inset: 0;
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      border-top: 4px solid var(--gold);
+    }
+
+    .testimonial-card.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      position: relative;
+    }
+
+    .testimonial-card p {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .testimonial-card span {
+      display: block;
+      margin-top: 26px;
+      font-size: 14px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--black);
+      color: var(--gold);
+      border: none;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .arrow.left { left: -75px; }
+    .arrow.right { right: -75px; }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 44px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: #bbb;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+                  url("cta.avif") center/cover no-repeat;
+      padding: 140px 10%;
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta h2 {
+      font-size: 48px;
+      margin-bottom: 32px;
+      color: #fff;
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 40px; }
+      .grid, .services { grid-template-columns: 1fr 1fr; }
+      .why { grid-template-columns: 1fr; }
+      .stats { flex-direction: column; gap: 32px; }
+      .arrow { display: none; }
+      .testimonial-card { padding: 34px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero reveal">
+  <div>
+    <h1>Where Talent Meets Opportunity</h1>
+    <p>Glitz Promotions connects premium professional models with brands, photographers, and creative campaigns across fashion, lifestyle, and events.</p>
+    <div class="buttons">
+      <a href="#" class="btn btn-primary">Book a Model</a>
+      <a href="#" class="btn btn-outline">Apply as a Model</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats reveal">
+  <div class="stat"><h2>500+</h2><p>Professional Models</p></div>
+  <div class="stat"><h2>200+</h2><p>Successful Campaigns</p></div>
+  <div class="stat"><h2>10+</h2><p>Years Experience</p></div>
+</section>
+
+<!-- GALLERY -->
+<section class="section reveal">
+  <h2>Our Talent & Work</h2>
+  <p class="section-desc">
+    A carefully curated portfolio of professional models and creative campaigns, crafted to elevate brands and visual storytelling.
+  </p>
+  <div class="grid">
+    <img src="model1.avif">
+    <img src="model2.avif">
+    <img src="model3.avif">
+    <img src="model4.avif">
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section reveal">
+  <div class="services">
+    <div class="service"><h3>Modelling Agency</h3><p>Experienced fashion, commercial, and runway models suited for diverse brand requirements.</p></div>
+    <div class="service"><h3>Photoshoots</h3><p>Editorial, portfolio, lifestyle, and promotional shoots executed with creative precision.</p></div>
+    <div class="service"><h3>Brand Promotions</h3><p>End-to-end promotional campaigns, launches, and activations for growing brands.</p></div>
+    <div class="service"><h3>Events & Campaigns</h3><p>Professional talent management for corporate events, exhibitions, and large campaigns.</p></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section reveal">
+  <div class="why">
+    <div class="why-text">
+      <h2>Why Choose Glitz Promotions?</h2>
+      <p class="section-desc">
+        We combine industry expertise, professional talent, and creative execution to deliver campaigns that stand out and perform.
+      </p>
+
+      <ul class="why-points">
+        <li>Carefully curated and professionally trained talent</li>
+        <li>Strong coordination from concept to execution</li>
+        <li>Experience across fashion, lifestyle & brand campaigns</li>
+        <li>Trusted by brands, photographers, and event teams</li>
+      </ul>
+
+      <div class="why-stats">
+        <div><strong>10+</strong><span>Years Experience</span></div>
+        <div><strong>200+</strong><span>Campaigns</span></div>
+        <div><strong>500+</strong><span>Models</span></div>
+      </div>
+    </div>
+
+    <img src="why.avif">
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section reveal">
+  <h2>What Clients Say</h2>
+
+  <div class="testimonial-wrapper">
+    <button class="arrow left">&#10094;</button>
+
+    <div class="testimonial-slider">
+      <div class="testimonial-card active">
+        <p>“Glitz Promotions handled our campaign with exceptional professionalism and attention to detail.”</p>
+        <span>— Brand Campaign Manager</span>
+      </div>
+      <div class="testimonial-card">
+        <p>“Reliable agency with a strong talent pool and smooth execution across shoots and promotions.”</p>
+        <span>— Creative Director</span>
+      </div>
+      <div class="testimonial-card">
+        <p>“Their coordination and model selection played a key role in the success of our campaign.”</p>
+        <span>— Marketing Head</span>
+      </div>
+    </div>
+
+    <button class="arrow right">&#10095;</button>
+  </div>
+
+  <div class="dots">
+    <button class="dot active"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta reveal">
+  <h2>Ready to Create Something Exceptional?</h2>
+  <div class="buttons">
+    <a href="#" class="btn btn-primary">Contact Us</a>
+    <a href="#" class="btn btn-outline">WhatsApp Now</a>
+  </div>
+</section>
+
+<script>
+  /* ---------- SCROLL REVEAL ---------- */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  reveals.forEach(r => observer.observe(r));
+
+  /* ---------- TESTIMONIAL SLIDER ---------- */
+  const cards = document.querySelectorAll('.testimonial-card');
+  const dots = document.querySelectorAll('.dot');
+  const prev = document.querySelector('.arrow.left');
+  const next = document.querySelector('.arrow.right');
+  const slider = document.querySelector('.testimonial-slider');
+
+  let current = 0;
+  let interval;
+
+  function showSlide(index) {
+    cards.forEach((card, i) => {
+      card.classList.toggle('active', i === index);
+      dots[i].classList.toggle('active', i === index);
+    });
+    current = index;
+  }
+
+  function nextSlide() {
+    showSlide((current + 1) % cards.length);
+  }
+
+  function prevSlide() {
+    showSlide((current - 1 + cards.length) % cards.length);
+  }
+
+  next.onclick = nextSlide;
+  prev.onclick = prevSlide;
+  dots.forEach((dot, i) => dot.onclick = () => showSlide(i));
+
+  function startAuto() {
+    interval = setInterval(nextSlide, 5000);
+  }
+
+  function stopAuto() {
+    clearInterval(interval);
+  }
+
+  slider.addEventListener('mouseenter', stopAuto);
+  slider.addEventListener('mouseleave', startAuto);
+
+  /* swipe */
+  let startX = 0;
+  slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  slider.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - startX;
+    if (diff > 50) prevSlide();
+    if (diff < -50) nextSlide();
+  });
+
+  startAuto();
+</script>
+
+</body>
+</html>
